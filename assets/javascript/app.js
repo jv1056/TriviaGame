@@ -87,6 +87,7 @@ function question1(response){
     console.log(randomYear);
     var buttonID = buttonIDs[i];
     $("#" + buttonID).val(randomYear);
+    $("#" + buttonID).html(randomYear);
 
 
   }
@@ -135,6 +136,7 @@ function question2(response){
   for (var i = 0; i < ratings.length; i++){
     var rating = ratings[i];
     $("#" + buttonIDs[i]).val(rating);
+    $("#" + buttonIDs[i]).html(rating);
 
 
   }
@@ -171,7 +173,6 @@ function question3(response){
   $("#show-question").html("<h2>" + "what  was "+ favMovie +"'s'" + " runtime?" + "</h2>");
   var buttonIDs = ["Option1", "Option2", "Option3","Option4"];
 
-  var randomRunTime = Math.floor(Math.random() * (146 - 87) + 87);
 
 
   var randomID = Math.floor(Math.random() * (4 - 0) + 0);
@@ -180,12 +181,14 @@ function question3(response){
   console.log(movieRunTime);
 
   for (var i = 0; i < buttonIDs.length; i++){
+    var randomRunTime = Math.floor(Math.random() * (146 - 87) + 87);
     var buttonID = buttonIDs[i];
     $("#" + buttonID).val("" + randomRunTime + " min");
-
+    $("#" + buttonID).html("" + randomRunTime + " min");
 
   }
   var correctButton = $('#' + buttonIDs[randomID]).val(movieRunTime);
+  $(correctButton).html(movieRunTime);
   var correctAnswer = $(correctButton).val();
 
 

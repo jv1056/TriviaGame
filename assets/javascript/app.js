@@ -34,18 +34,44 @@ $.ajax({
 }).then(function(response){
   console.log(response);
 
-  // question1(response);
-  // question2(response);
-  question3(response);
+run();
 
+question1(response);
+question2(response);
+question3(response);
 
-
-
-
+showScore();
 });
+
+var number = 30;
+
+var intervalId;
+
+function decrement() {
+
+  number--;
+
+  $("#show-number").html("<h2>" + number + "</h2>");
+
+  if (number === 0) {
+
+    stop();
+
+    alert("Time Up!");
+  }
+}
+
+function run() {
+  intervalId = setInterval(decrement, 1000);
+}
+
+
+
 function question1(response){
 
-  //Changes div to contain question. What year was "movie" relased?
+
+  $("#show-question").html("<h2>" + "what year was "+ favMovie + " released?" + "</h2>");
+
   var buttonIDs = ["Option1", "Option2", "Option3","Option4"];
 
   var randomYear = Math.floor(Math.random() * (2018 - 1960) + 1960);
@@ -87,11 +113,6 @@ function question1(response){
     }else{
       wrong++;
     }
-
-
-
-
-    alert("# of Correct Answers:" + correct + "   # of Wrong Answers:" + wrong);
   })
 }
 
@@ -101,7 +122,7 @@ function question1(response){
 
 function question2(response){
 
-  //changes div text to "what was this film rated?"
+  $("#show-question").html("<h2>" + "what was "+ favMovie + " rated?" + "</h2>");
   var buttonIDs = ["Option1", "Option2", "Option3","Option4"];
 
   var ratings = ["G","PG","PG-13","R"];
@@ -140,11 +161,6 @@ function question2(response){
     }else{
       wrong++;
     }
-
-
-
-
-    alert("# of Correct Answers:" + correct + "   # of Wrong Answers:" + wrong);
   })
 }
 
@@ -152,7 +168,7 @@ function question2(response){
 //---------------question 3---------
 function question3(response){
 
-  //changes div text to "what was this film rated?"
+  $("#show-question").html("<h2>" + "what  was "+ favMovie +"'s'" + " runtime?" + "</h2>");
   var buttonIDs = ["Option1", "Option2", "Option3","Option4"];
 
   var randomRunTime = Math.floor(Math.random() * (146 - 87) + 87);
@@ -192,15 +208,15 @@ function question3(response){
     }else{
       wrong++;
     }
-
-
-
-
-    alert("# of Correct Answers:" + correct + "   # of Wrong Answers:" + wrong);
   })
 }
 
 
+function showScore(){
+  alert("# of Correct Answers:" + correct + "   # of Wrong Answers:" + wrong);
+}
+
 
 
 //Creat time tha counts down.. when counts down ends the game by Creating Alert.
+//

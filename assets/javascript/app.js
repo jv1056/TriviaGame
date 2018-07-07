@@ -10,8 +10,6 @@
   //year released
   //Rated PG?
   //Runtime
-  //imdb Rating
-
 
 
 
@@ -33,14 +31,18 @@ $.ajax({
   medthod: "GET"
 }).then(function(response){
   console.log(response);
+  var posterURL = response.Poster;
+  var img = $('<img />',
+             { src: posterURL,
+               width: 300
+             })
+              .appendTo($('.poster'));
 
 run();
 
 question1(response);
 question2(response);
 question3(response);
-
-showScore();
 });
 
 var number = 30;
@@ -170,7 +172,7 @@ function question2(response){
 //---------------question 3---------
 function question3(response){
 
-  $("#show-question").html("<h2>" + "what  was "+ favMovie +"'s'" + " runtime?" + "</h2>");
+  $("#show-question").html("<h2>" + "what  was "+ favMovie +"'s" + " runtime?" + "</h2>");
   var buttonIDs = ["Option1", "Option2", "Option3","Option4"];
 
 
@@ -211,12 +213,15 @@ function question3(response){
     }else{
       wrong++;
     }
+    showScore();
   })
+
 }
 
 
 function showScore(){
   alert("# of Correct Answers:" + correct + "   # of Wrong Answers:" + wrong);
+  location.reload();
 }
 
 
